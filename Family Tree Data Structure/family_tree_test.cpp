@@ -51,9 +51,9 @@ int main(int argc, char* argv[], char* envp[])
 {
 	//familyTreeTests();
 	//concurrency_tests();
-	//keygen_tests();
-	//berkleydb_tests();
-	serialization();
+	keygen_tests();
+	berkleydb_tests();
+	//serialization();
 	//cout << argv[0] << endl;
 
 
@@ -180,13 +180,15 @@ void keygen_tests()
 	string iman = "Immanuel James Ongweny";
 	string imanCap = "Immananuel";
 	string andrew{ "Andrew James Ongweny" };
-	string jenn = "Jennifer L zaki";
+	string jenn = "Jennifer L Zaki";
+	string short_name{ "Bo Ot" };
 
-	cout << "iman / age: \t" << std::hash<string>{}(iman) / age << endl;
+	cout << "iman / age: \t" << std::hash<string>{}(iman) / (age * 100) << endl;
 	cout << "iman: \t\t" << std::hash<string>{}(iman) << endl;
-	//cout << std::hash<string>{}(imanCap) << endl;
-	//cout << std::hash<string>{}(andrew) << endl;
-	cout << std::hash<string>{}(jenn) << endl;
+	cout << "imanCap: \t" << std::hash<string>{}(imanCap) << endl;
+	cout << "andrew: \t" << std::hash<string>{}(andrew) << endl;
+	cout << "jennifer: \t" << std::hash<string>{}(jenn) << endl;
+	cout << "short_name: \t" << std::hash<string>{}(short_name) << endl;
 }
 
 void berkleydb_tests()

@@ -22,17 +22,21 @@
   <ItemGroup>
     <ClCompile Include="FamilyDB.cpp" />
     <ClCompile Include="FamilyMember.cpp" />
+    <ClCompile Include="FamilyTree.cpp" />
     <ClCompile Include="family_tree_test.cpp" />
     <ClCompile Include="Name.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="PersonKeyGen.cpp" />
     <ClCompile Include="Relationship.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FamilyDB.h" />
     <ClInclude Include="FamilyMember.h" />
+    <ClInclude Include="FamilyTree.h" />
     <ClInclude Include="Name.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Person.h" />
+    <ClInclude Include="PersonKeyGen.h" />
     <ClInclude Include="Relationship.h" />
     <ClInclude Include="tree_serializations.h" />
   </ItemGroup>

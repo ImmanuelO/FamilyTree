@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include "Person.h"
 
 
@@ -15,8 +16,8 @@ namespace Iman_familytree {
 		};
 
 		RelationshipType m_type{};
-		std::weak_ptr<Person> m_person1{};
-		std::weak_ptr<Person> m_person2{};
+		std::string m_person1_key{};
+		std::string m_person2_key{};
 
 		bool operator==(const Relationship& b) const;
 	};

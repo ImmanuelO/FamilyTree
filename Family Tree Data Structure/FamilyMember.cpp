@@ -22,7 +22,7 @@ namespace Iman_familytree {
 
 
 
-	const std::vector<Relationship>& FamilyMember::getRelationship(rel_type t_relate) const
+	const std::vector<Relationship>& FamilyMember::getRelationship(const rel_type t_relate) const
 	{
 		switch (t_relate)
 		{
@@ -33,17 +33,19 @@ namespace Iman_familytree {
 		case rel_type::Spouse:
 			return m_spouse;
 		default:
-			return std::move(std::vector<Relationship>{});
+			return m_children;
 		}
 	}
 
 	void FamilyMember::addRelationship(const rel_type t_relate, const std::shared_ptr<Person>& t_person)
 	{
 		if (t_person != nullptr && !t_person->m_name.fullNameText().empty()) {
+			
 			Relationship relation;
 			relation.m_type = t_relate;
-			relation.m_person1 = this->m_person;
-			relation.m_person2 = t_person;
+			relation.m_person1_key = this->m_person;
+			relation.m_person2_key = t_person;
+
 			switch (relation.m_type)
 			{ 
 			case rel_type::Child:

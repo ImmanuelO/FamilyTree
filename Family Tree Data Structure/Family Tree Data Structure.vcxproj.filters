@@ -33,6 +33,12 @@
     <ClCompile Include="FamilyDB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FamilyTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonKeyGen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Name.h">
@@ -54,6 +60,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tree_serializations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FamilyTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonKeyGen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
