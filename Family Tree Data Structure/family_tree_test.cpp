@@ -3,12 +3,9 @@
 
 #include "pch.h"
 #include "Person.h"
+#include "IdGenerator.h"
 #include "FamilyMember.h"
 #include "FamilyDB.h"
-
-
-
-
 
 //using std directives
 using std::cout;
@@ -37,6 +34,7 @@ void concurrency_tests();
 void keygen_tests();
 void berkleydb_tests();
 void serialization();
+void PRNGtests();
 
 auto output = [](Person person) {
 	std::cout << "given name: " << person.m_name.givenName << std::endl;
@@ -49,119 +47,128 @@ auto output = [](Person person) {
 
 int main(int argc, char* argv[], char* envp[])
 {
+
+	FamilyMember iman(Person("immanuel james ongweny"));
+	FamilyMember daughter(Person("Caliope Ongweny"));
+
+	iman.addRelationship(RelationType::Child, daughter.getPerson());
+	auto& person2 = iman.getPerson();
+	person2->m_gender = Person::gender::Male;
+	person2->m_birthday = from_string("1994-9-03");
+
 	//familyTreeTests();
 	//concurrency_tests();
-	keygen_tests();
-	berkleydb_tests();
+	//keygen_tests();
+	//berkleydb_tests();
 	//serialization();
 	//cout << argv[0] << endl;
 
-
+	PRNGtests();
 
 }
 
 void familyTreeTests() {
-	using namespace Iman_familytree;
-	using namespace boost::gregorian;
+	//using namespace Iman_familytree;
+	//using namespace boost::gregorian;
 
 
-	auto output = [](Person person) {
-		std::cout << "given name: " << person.m_name.givenName << std::endl;
-		std::cout << "middle name: " << person.m_name.middleName << std::endl;
-		std::cout << "surname: " << person.m_name.surName << std::endl;
-		std::cout << "fullname: " << person.m_name.fullNameText() << endl;
-		std::cout << "Gender: " << static_cast<int>(person.m_gender )<< endl;
-		std::cout << "Birthday: " << person.m_birthday << endl << endl;
-	};
+	//auto output = [](Person person) {
+	//	std::cout << "given name: " << person.m_name.givenName << std::endl;
+	//	std::cout << "middle name: " << person.m_name.middleName << std::endl;
+	//	std::cout << "surname: " << person.m_name.surName << std::endl;
+	//	std::cout << "fullname: " << person.m_name.fullNameText() << endl;
+	//	std::cout << "Gender: " << static_cast<int>(person.m_gender )<< endl;
+	//	std::cout << "Birthday: " << person.m_birthday << endl << endl;
+	//};
 
 
 
 
-	Person person("immanuel james ongweny");
-	//output(person);
-	
-	Person* person1 = new Person("Jennifer L Zaki");
-	//output(*person1);
+	//Person person("immanuel james ongweny");
+	////output(person);
+	//
+	//Person* person1 = new Person("Jennifer L Zaki");
+	////output(*person1);
 
 
-	FamilyMember iman(person);
-	FamilyMember jenn(*person1);
-	
-	auto& person2 = iman.getPerson();
+	//FamilyMember iman(person);
+	//FamilyMember jenn(*person1);
+	//
+	//auto& person2 = iman.getPerson();
 
-	person2->m_gender = Person::gender::Male;
-	person2->m_birthday = from_string("1994-9-03");
-
-
-	output(*iman.getPerson());
-
-	cout << person2.use_count() << endl;
+	//person2->m_gender = Person::gender::Male;
+	//person2->m_birthday = from_string("1994-9-03");
 
 
-	for (size_t i = 0; i < 6; i++)
-	{
-		iman.addRelationship(RelationType::Child, jenn.getPerson());
-	}
+	//output(*iman.getPerson());
+
+	//cout << person2.use_count() << endl;
 
 
-	auto& imanChild = iman.getRelationship(RelationType::Child);
-	//auto& jennParent = jenn.getRelationship(RelationType::Parent);
-
-	
-
-	int i{};
-	auto printRelationships = [&]() {
-		for (auto elem : imanChild) {
-			elem.m_person2.lock()->m_gender = Person::gender::Female;
-			elem.m_person2.lock()->m_birthday = from_string("1994-11-05");
-			output(*elem.m_person2.lock());
-		}
-	};
-
-	printRelationships();
-
-	iman.deleteRelationship(RelationType::Child, jenn.getPerson());
-
-
-	printRelationships();
-
-
-	//for (auto elem : jennParent) {
-	//	cout << elem.m_person2.lock()->m_name.fullNameText() << endl;
-	//	cout << elem.m_person2.use_count() << endl;
-
+	//for (size_t i = 0; i < 6; i++)
+	//{
+	//	iman.addRelationship(RelationType::Child, jenn.getPerson());
 	//}
 
 
-	
+	//auto& imanChild = iman.getRelationship(RelationType::Child);
+	////auto& jennParent = jenn.getRelationship(RelationType::Parent);
 
-	std::cin.get();
+	//
+
+	//int i{};
+	//auto printRelationships = [&]() {
+	//	for (auto elem : imanChild) {
+	//		elem.m_person2.lock()->m_gender = Person::gender::Female;
+	//		elem.m_person2.lock()->m_birthday = from_string("1994-11-05");
+	//		output(*elem.m_person2.lock());
+	//	}
+	//};
+
+	//printRelationships();
+
+	//iman.deleteRelationship(RelationType::Child, jenn.getPerson());
+
+
+	//printRelationships();
+
+
+	////for (auto elem : jennParent) {
+	////	cout << elem.m_person2.lock()->m_name.fullNameText() << endl;
+	////	cout << elem.m_person2.use_count() << endl;
+
+	////}
+
+
+	//
+
+	//std::cin.get();
 
 }
 
 void concurrency_tests()
 {
-	FamilyMember member1(Person("immanuel Ongweny"));
-	FamilyMember member2(Person("Jennifer L Zaki"));
+	//FamilyMember member1(Person("immanuel Ongweny"));
+	//FamilyMember member2(Person("Jennifer L Zaki"));
 
-	try
-	{
-		auto f = std::async(std::launch::async, &FamilyMember::addRelationship, &member1, RelationType::Spouse, member2.getPerson());
-		std::this_thread::sleep_for(std::chrono::microseconds(521));
+	//try
+	//{
+	//	auto f = std::async(std::launch::async, &FamilyMember::addRelationship, &member1, RelationType::Spouse, member2.getPerson());
+	//	std::this_thread::sleep_for(std::chrono::microseconds(521));
 
-		//f.get();
-		auto relation = member1.getRelationship(RelationType::Spouse);
-	
-		cout << relation[0].m_person2.lock()->m_name.fullNameText() << endl;
+	//	//f.get();
+	//	auto relation = member1.getRelationship(RelationType::Spouse);
+	//
+	//	cout << relation[0].m_person2.lock()->m_name.fullNameText() << endl;
 
-	}
-	catch (const std::exception& e)
-	{
-		cout << e.what() << endl;
-	}
-	catch (...) {
-		cout << "WTF" << endl;
-	}
+	//}
+	//catch (const std::exception& e)
+	//{
+	//	cout << e.what() << endl;
+	//}
+	//catch (...) {
+	//	cout << "WTF" << endl;
+	//}
 
 	
 
@@ -173,22 +180,40 @@ void concurrency_tests()
 void keygen_tests()
 {
 
-	auto iman_birth = day_clock::local_day() - date(1994, 9, 03);
-	auto  age = iman_birth.days() / 365;
-	cout << age << endl;
+	{
 
-	string iman = "Immanuel James Ongweny";
-	string imanCap = "Immananuel";
-	string andrew{ "Andrew James Ongweny" };
-	string jenn = "Jennifer L Zaki";
-	string short_name{ "Bo Ot" };
+	
+		auto iman_birth = day_clock::local_day() - date(1994, 9, 03);
+		auto  age = iman_birth.days() / 365;
+		cout << age << endl;
 
-	cout << "iman / age: \t" << std::hash<string>{}(iman) / (age * 100) << endl;
-	cout << "iman: \t\t" << std::hash<string>{}(iman) << endl;
-	cout << "imanCap: \t" << std::hash<string>{}(imanCap) << endl;
-	cout << "andrew: \t" << std::hash<string>{}(andrew) << endl;
-	cout << "jennifer: \t" << std::hash<string>{}(jenn) << endl;
-	cout << "short_name: \t" << std::hash<string>{}(short_name) << endl;
+		string iman = "Immanuel James Ongweny";
+	
+		string imanCap = "Immanuel James Ongweny";
+		string andrew{ "Andrew James Ongweny" };
+		string jenn = "Jennifer L Zaki";
+		string short_name{ "Bo Ot" };
+
+		boost::gregorian::date iman_birthday(2000, 11, 03);
+		boost::gregorian::date jenn_birthday(1889, 11, 05);
+		auto iman_bday_hash = std::hash<string>{}(to_iso_string(iman_birthday));
+		auto jenn_bday_hash = std::hash<string>{}(to_iso_string(jenn_birthday));
+
+		cout << "jenn_birthday:" << to_iso_string(jenn_birthday) << endl;
+		cout << "jenn_birthday_hash:" << jenn_bday_hash << endl;
+		cout << "iman_birthday_hash:" << iman_bday_hash << endl;
+		cout << "iman / birthday:" << std::setw(22) << std::hash<string>{}(iman) << endl;
+		cout << "iman:" << std::setw(33) << std::hash<string>{}(iman) << endl;
+		cout << "imanCap:" << std::setw(30) << std::hash<string>{}(imanCap) << endl;
+		cout << "andrew:" << std::setw(31) << std::hash<string>{}(andrew) << endl;
+		cout << "jennifer:" << std::setw(28) << std::hash<string>{}(jenn) << endl;
+		cout << "short_name:" << std::setw(27) << std::hash<string>{}(short_name) << endl;
+	}
+	//{
+	//	std::string person_key_gen_test = PersonUUID()();
+	//	cout << person_key_gen_test << endl;
+	//}
+
 }
 
 void berkleydb_tests()
@@ -246,96 +271,105 @@ void berkleydb_tests()
 
 void serialization()
 {
-	std::stringbuf boostBuf(std::ios_base::binary | std::ios_base::in | std::ios_base::out);
+	//std::stringbuf boostBuf(std::ios_base::binary | std::ios_base::in | std::ios_base::out);
 
 
-	try
-	{
-		{
+	//try
+	//{
+	//	{
 
-			FamilyMember iman(Person("immanuel james ongweny"));
-			FamilyMember daughter(Person("Caliope Ongweny"));
+	//		FamilyMember iman(Person("immanuel james ongweny"));
+	//		FamilyMember daughter(Person("Caliope Ongweny"));
 
-			iman.addRelationship(RelationType::Child, daughter.getPerson());
-			auto& person2 = iman.getPerson();
-			person2->m_gender = Person::gender::Male;
-			person2->m_birthday = from_string("1994-9-03");
+	//		iman.addRelationship(RelationType::Child, daughter.getPerson());
+	//		auto& person2 = iman.getPerson();
+	//		person2->m_gender = Person::gender::Male;
+	//		person2->m_birthday = from_string("1994-9-03");
 
 
-			auto& i_daughter_list = iman.getRelationship(RelationType::Child);
-			cout << "Iman daughter address: " << i_daughter_list[0].m_person2.lock().get() << endl;
-			cout << "Iman Person address: " << iman.getPerson().get() << endl;
-			cout << "Iman Person use Count: " << iman.getPerson().use_count() << endl;
+	//		auto& i_daughter_list = iman.getRelationship(RelationType::Child);
+	//		cout << "Iman daughter address: " << i_daughter_list[0].m_person2.lock().get() << endl;
+	//		cout << "Iman Person address: " << iman.getPerson().get() << endl;
+	//		cout << "Iman Person use Count: " << iman.getPerson().use_count() << endl;
 
-			output(*iman.getPerson());
-			output(*i_daughter_list[0].m_person1.lock());
-			output(*i_daughter_list[0].m_person2.lock());
-			cout << endl << endl;
+	//		output(*iman.getPerson());
+	//		output(*i_daughter_list[0].m_person1.lock());
+	//		output(*i_daughter_list[0].m_person2.lock());
+	//		cout << endl << endl;
 
-		
-			boost::archive::binary_oarchive outarch(boostBuf);
-			outarch << iman << daughter;
+	//	
+	//		boost::archive::binary_oarchive outarch(boostBuf);
+	//		outarch << iman << daughter;
 
-	
+	//
 
-			
-		}
+	//		
+	//	}
 
-		FamilyMember jenn{}; 
-		FamilyMember daughter2{};
+	//	FamilyMember jenn{}; 
+	//	FamilyMember daughter2{};
 
-		{
-			boost::archive::binary_iarchive inarch(boostBuf);
-			inarch >> jenn >> daughter2;
-		}
+	//	{
+	//		boost::archive::binary_iarchive inarch(boostBuf);
+	//		inarch >> jenn >> daughter2;
+	//	}
 
-		{
+	//	{
 
-			cout << "Jenn Person address: " << jenn.getPerson().get() << endl;
-			cout << "Jenn Person use Count: " << jenn.getPerson().use_count() << endl;
-			output(*jenn.getPerson());
-			cout << endl;
+	//		cout << "Jenn Person address: " << jenn.getPerson().get() << endl;
+	//		cout << "Jenn Person use Count: " << jenn.getPerson().use_count() << endl;
+	//		output(*jenn.getPerson());
+	//		cout << endl;
 
-			auto& j_daughter_list = jenn.getRelationship(RelationType::Child);
+	//		auto& j_daughter_list = jenn.getRelationship(RelationType::Child);
 
-			cout << endl;
+	//		cout << endl;
 
-			output(*j_daughter_list[0].m_person1.lock());
+	//		output(*j_daughter_list[0].m_person1.lock());
 
-			cout << endl << endl;
+	//		cout << endl << endl;
 
-			cout << daughter2.getPerson().get() << endl;
-			cout << "Jenn daughter address: " << j_daughter_list[0].m_person2.lock().get() << endl;
-			output(*j_daughter_list[0].m_person2.lock());
+	//		cout << daughter2.getPerson().get() << endl;
+	//		cout << "Jenn daughter address: " << j_daughter_list[0].m_person2.lock().get() << endl;
+	//		output(*j_daughter_list[0].m_person2.lock());
 
-			cout << "Jenn Person use Count: " << jenn.getPerson().use_count() << endl;
-		}
-		/*{
-			std::shared_ptr<std::vector<string>> share_test = std::make_shared<std::vector<string>>();
-			share_test->push_back("testing serialization of shared smart pointers");
-			std::weak_ptr<std::vector<string>> weak_test{ share_test };
+	//		cout << "Jenn Person use Count: " << jenn.getPerson().use_count() << endl;
+	//	}
+	//	/*{
+	//		std::shared_ptr<std::vector<string>> share_test = std::make_shared<std::vector<string>>();
+	//		share_test->push_back("testing serialization of shared smart pointers");
+	//		std::weak_ptr<std::vector<string>> weak_test{ share_test };
 
-			cout << "Share Ptr Address: " << share_test.get() << "\n Weak Ptr Address: " << weak_test.lock().get() << endl;
+	//		cout << "Share Ptr Address: " << share_test.get() << "\n Weak Ptr Address: " << weak_test.lock().get() << endl;
 
-			boost::archive::binary_oarchive outarch(boostBuf);
-			outarch << share_test << weak_test;
-		}
+	//		boost::archive::binary_oarchive outarch(boostBuf);
+	//		outarch << share_test << weak_test;
+	//	}
 
-		{
-			std::shared_ptr<std::vector<string>> share_test2{};
-			std::weak_ptr<std::vector<string>> weak_test2{};
-			
-			boost::archive::binary_iarchive inarch(boostBuf);
-			inarch >> share_test2 >> weak_test2;
+	//	{
+	//		std::shared_ptr<std::vector<string>> share_test2{};
+	//		std::weak_ptr<std::vector<string>> weak_test2{};
+	//		
+	//		boost::archive::binary_iarchive inarch(boostBuf);
+	//		inarch >> share_test2 >> weak_test2;
 
-			cout << "Share Ptr Address: " << share_test2.get() << "\n Weak Ptr Address: " << weak_test2.lock().get() << endl;
-		}*/
-	}
-	catch (const std::exception& e)
-	{
-		cout << e.what() << endl;
-	}
+	//		cout << "Share Ptr Address: " << share_test2.get() << "\n Weak Ptr Address: " << weak_test2.lock().get() << endl;
+	//	}*/
+	//}
+	//catch (const std::exception& e)
+	//{
+	//	cout << e.what() << endl;
+	//}
 
 	//output(*jenn.getPerson());
+}
+
+void PRNGtests()
+{
+	IdGenerator id_generator;
+
+	for (int i{ 0 }; i < 100; i++) {
+		cout << id_generator() << "\n";
+	}
 }
 

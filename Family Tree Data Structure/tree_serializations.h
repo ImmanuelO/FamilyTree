@@ -17,6 +17,6 @@ namespace Iman_familytree {
 
 	template<class Archive>
 	inline void serialize(Archive& ar, Relationship& relate, const unsigned int file_version) {
-		ar & relate.m_type & relate.m_person1 & relate.m_person2;
+		ar & relate.m_type & relate.m_person1_uuid & relate.m_person2_uuid;
 	}
 }

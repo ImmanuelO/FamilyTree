@@ -27,16 +27,19 @@
     <ClCompile Include="family_tree_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FamilyMember.cpp">
+    <ClCompile Include="FamilyDB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FamilyDB.cpp">
+    <ClCompile Include="FamilyMember.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FamilyTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PersonKeyGen.cpp">
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IdGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -48,9 +51,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Relationship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FamilyMember.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
@@ -65,7 +65,10 @@
     <ClInclude Include="FamilyTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PersonKeyGen.h">
+    <ClInclude Include="FamilyMember.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IdGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -25,8 +25,11 @@
     <ClCompile Include="FamilyTree.cpp" />
     <ClCompile Include="family_tree_test.cpp" />
     <ClCompile Include="Name.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Person.cpp" />
-    <ClCompile Include="PersonKeyGen.cpp" />
+    <ClCompile Include="IdGenerator.cpp" />
     <ClCompile Include="Relationship.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -36,7 +39,7 @@
     <ClInclude Include="Name.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Person.h" />
-    <ClInclude Include="PersonKeyGen.h" />
+    <ClInclude Include="IdGenerator.h" />
     <ClInclude Include="Relationship.h" />
     <ClInclude Include="tree_serializations.h" />
   </ItemGroup>
@@ -105,7 +108,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Program Files\db-18.1.40\build_windows;C:\Program Files\Boost\boost_1_73_0;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files\db-18.1.40\build_windows\x64\Debug;C:\Program Files\Boost\boost_1_73_0\lib64-msvc-14.2;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Program Files\db-18.1.40\build_windows\x64\Debug;C:\Program Files\Boost\boost_1_73_0\lib64-msvc-14.2;C:\Program Files\Boost\boost_1_73_0\boost;$(LibraryPath)</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -147,6 +150,8 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

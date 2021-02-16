@@ -5,4 +5,8 @@ namespace Iman_familytree {
 	FamilyTree::FamilyTree(){
 	}
 
+	void FamilyTree::db_configuration()
+	{
+	}
+
 }

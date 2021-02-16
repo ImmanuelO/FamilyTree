@@ -16,8 +16,8 @@ namespace Iman_familytree {
 		};
 
 		RelationshipType m_type{};
-		std::string m_person1_key{};
-		std::string m_person2_key{};
+		std::string m_person1_uuid{};
+		std::string m_person2_uuid{};
 
 		bool operator==(const Relationship& b) const;
 	};

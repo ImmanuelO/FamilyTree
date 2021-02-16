@@ -1,4 +1,5 @@
 #pragma once
+#include "pch.h"
 #include <db_cxx.h>
 #include <list>
 #include<string>
@@ -13,14 +14,11 @@ namespace Iman_familytree {
 	class FamilyTree
 	{
 		FamilyTree();
-		~FamilyTree();
+		~FamilyTree() {};
 
 	private:
-		char* FAM_ENV_DIR{ nullptr };
-		char* FAM_DB_DIR{ nullptr };
 		FamilyDB m_db_handler;
-		DbEnv* famEnv{ nullptr };
-		Db* famDb{ nullptr };
+
 		
 
 		std::string starting_user_key;

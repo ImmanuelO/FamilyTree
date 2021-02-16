@@ -14,7 +14,7 @@ namespace Iman_familytree {
 			Female
 		};
 		using gender = genderTypes;
-		;
+
 
 		Person();
 		Person(Name, gender = gender::Unkown);

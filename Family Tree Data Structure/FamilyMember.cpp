@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "FamilyMember.h"
+#include "PersonID.h"
 
 
 namespace Iman_familytree {
@@ -7,7 +8,7 @@ namespace Iman_familytree {
 	FamilyMember::FamilyMember(Person t_person) {
 
 		if (!t_person.m_name.fullNameText().empty())
-			m_person = std::make_shared<Person>(t_person);
+			m_person_details = std::make_shared<Person>(t_person);
 		else 
 			throw std::invalid_argument("Please provides members name");
 		
@@ -16,7 +17,7 @@ namespace Iman_familytree {
 #ifndef NDEBUG
 	const std::shared_ptr<Person>& FamilyMember::getPerson()
 	{
-		return m_person;
+		return m_person_details;
 	}
 #endif // DEBUG
 
@@ -39,57 +40,57 @@ namespace Iman_familytree {
 
 	void FamilyMember::addRelationship(const rel_type t_relate, const std::shared_ptr<Person>& t_person)
 	{
-		if (t_person != nullptr && !t_person->m_name.fullNameText().empty()) {
-			
-			Relationship relation;
-			relation.m_type = t_relate;
-			relation.m_person1_key = this->m_person;
-			relation.m_person2_key = t_person;
+		//if (t_person != nullptr && !t_person->m_name.fullNameText().empty()) {
+		//	
+		//	Relationship relation;
+		//	relation.m_type = t_relate;
+		//	relation.m_person_details1_key = this->m_person_details;
+		//	relation.m_person_details2_key = t_person;
 
-			switch (relation.m_type)
-			{ 
-			case rel_type::Child:
-				if(!RelationshipExists(m_children,relation))
-					m_children.push_back(relation);
-				break;
-			case rel_type::Parent:
-				if (!RelationshipExists(m_parent, relation))
-					m_parent.push_back(relation);
-				break;
-			case rel_type::Spouse:
-				if (!RelationshipExists(m_spouse, relation))
-					m_spouse.push_back(relation);
-				break;
-			default:
-				break;
-			}
-		}
+		//	switch (relation.m_type)
+		//	{ 
+		//	case rel_type::Child:
+		//		if(!RelationshipExists(m_children,relation))
+		//			m_children.push_back(relation);
+		//		break;
+		//	case rel_type::Parent:
+		//		if (!RelationshipExists(m_parent, relation))
+		//			m_parent.push_back(relation);
+		//		break;
+		//	case rel_type::Spouse:
+		//		if (!RelationshipExists(m_spouse, relation))
+		//			m_spouse.push_back(relation);
+		//		break;
+		//	default:
+		//		break;
+		//	}
+		//}
 	}
 
  	void FamilyMember::deleteRelationship(const rel_type t_relate, const std::shared_ptr<Person>& t_person)
 	{
-		if (t_person != nullptr && !t_person->m_name.fullNameText().empty()) {
-			
-			Relationship relation;
-			relation.m_type = t_relate;
-			relation.m_person1 = this->m_person;
-			relation.m_person2 = t_person;
+		//if (t_person != nullptr && !t_person->m_name.fullNameText().empty()) {
+		//	
+		//	Relationship relation;
+		//	relation.m_type = t_relate;
+		//	relation.m_person_details1 = this->m_person_details;
+		//	relation.m_person_details2 = t_person;
 
-			switch (t_relate)
-			{
-			case rel_type::Child:
-				deleteFromList(m_children, relation);
-				break;
-			case rel_type::Parent:
-				deleteFromList(m_parent, relation);
-				break;
-			case rel_type::Spouse:
-				deleteFromList(m_spouse, relation);
-				break;
-			default:
-				break;
-			}
-		}
+		//	switch (t_relate)
+		//	{
+		//	case rel_type::Child:
+		//		deleteFromList(m_children, relation);
+		//		break;
+		//	case rel_type::Parent:
+		//		deleteFromList(m_parent, relation);
+		//		break;
+		//	case rel_type::Spouse:
+		//		deleteFromList(m_spouse, relation);
+		//		break;
+		//	default:
+		//		break;
+		//	}
+		//}
 	}
 
 	bool FamilyMember::RelationshipExists(std::vector<Relationship>& relation_list, const Relationship& t_relation)

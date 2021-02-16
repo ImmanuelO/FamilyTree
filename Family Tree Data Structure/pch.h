@@ -1,22 +1,56 @@
 #pragma once
 
-//std
+//************** Standard Library *****************************
 #include <algorithm>
+
+//containers
 #include <array>
-#include <iostream>
-#include <memory>
-#include <stdexcept>
-#include <string>
 #include <vector>
-#include <future>
+
+//Date time
 #include <chrono>
 
-//boost
+
+//error handling
+#include <stdexcept>
+
+//functional
+#include <functional>
+
+//Input Ouput
+#include <iostream>
+#include <iomanip>
+
+//Numerics Library
+#include <ratio>
+
+//Random
+#include <random>
+
+//string Library
+#include <string>
+
+//thread support Library
+#include <future>
+#include <thread>
+
+//utilities
+#include <memory>
+
+
+//********************** boost ************************************
+
+//boost gregorian date
 #include <boost/date_time/gregorian/gregorian.hpp> //include all types plus i/o
 
 //boost smartptr
-#include<boost/smart_ptr/shared_ptr.hpp>
-#include<boost/smart_ptr/weak_ptr.hpp>
+#include <boost/smart_ptr/shared_ptr.hpp>
+#include <boost/smart_ptr/weak_ptr.hpp>
+
+//boost UUIDs
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <boost/uuid/uuid_generators.hpp>
 
 //boost archive
 #include <boost/archive/binary_iarchive.hpp>
