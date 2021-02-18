@@ -25,12 +25,12 @@ namespace Iman_familytree {
 
 	//variables
 	public:
+		uint32_t m_id{};
 		Name m_name{};
 		gender m_gender{};
 		std::string m_countryOrigin{};
 		boost::gregorian::date m_birthday{};
 		boost::gregorian::date m_deathday{};
-
 	};
 }
  

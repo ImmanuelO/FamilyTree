@@ -5,7 +5,7 @@
 #include "Person.h"
 #include "IdGenerator.h"
 #include "FamilyMember.h"
-#include "FamilyDB.h"
+#include "BerkleyDb.h"
 
 //using std directives
 using std::cout;
@@ -22,7 +22,7 @@ using namespace boost::gregorian;
 
 //family tree app
 using namespace Iman_familytree;
-typedef Relationship::RelationshipType RelationType;
+typedef Relationship::Type RelationType;
 
 
 //Globals
@@ -68,60 +68,60 @@ int main(int argc, char* argv[], char* envp[])
 }
 
 void familyTreeTests() {
-	//using namespace Iman_familytree;
-	//using namespace boost::gregorian;
+	using namespace Iman_familytree;
+	using namespace boost::gregorian;
 
 
-	//auto output = [](Person person) {
-	//	std::cout << "given name: " << person.m_name.givenName << std::endl;
-	//	std::cout << "middle name: " << person.m_name.middleName << std::endl;
-	//	std::cout << "surname: " << person.m_name.surName << std::endl;
-	//	std::cout << "fullname: " << person.m_name.fullNameText() << endl;
-	//	std::cout << "Gender: " << static_cast<int>(person.m_gender )<< endl;
-	//	std::cout << "Birthday: " << person.m_birthday << endl << endl;
-	//};
+	auto output = [](Person person) {
+		std::cout << "given name: " << person.m_name.givenName << std::endl;
+		std::cout << "middle name: " << person.m_name.middleName << std::endl;
+		std::cout << "surname: " << person.m_name.surName << std::endl;
+		std::cout << "fullname: " << person.m_name.fullNameText() << endl;
+		std::cout << "Gender: " << static_cast<int>(person.m_gender )<< endl;
+		std::cout << "Birthday: " << person.m_birthday << endl << endl;
+	};
 
 
 
 
-	//Person person("immanuel james ongweny");
-	////output(person);
-	//
-	//Person* person1 = new Person("Jennifer L Zaki");
-	////output(*person1);
+	Person person("immanuel james ongweny");
+	output(person);
+	
+	Person* person1 = new Person("Jennifer L Zaki");
+	output(*person1);
 
 
-	//FamilyMember iman(person);
-	//FamilyMember jenn(*person1);
-	//
-	//auto& person2 = iman.getPerson();
+	FamilyMember iman(person);
+	FamilyMember jenn(*person1);
+	
+	auto& person2 = iman.getPerson();
 
-	//person2->m_gender = Person::gender::Male;
-	//person2->m_birthday = from_string("1994-9-03");
-
-
-	//output(*iman.getPerson());
-
-	//cout << person2.use_count() << endl;
+	person2->m_gender = Person::gender::Male;
+	person2->m_birthday = from_string("1994-9-03");
 
 
-	//for (size_t i = 0; i < 6; i++)
-	//{
-	//	iman.addRelationship(RelationType::Child, jenn.getPerson());
-	//}
+	output(*iman.getPerson());
+
+	cout << person2.use_count() << endl;
 
 
-	//auto& imanChild = iman.getRelationship(RelationType::Child);
-	////auto& jennParent = jenn.getRelationship(RelationType::Parent);
+	for (size_t i = 0; i < 6; i++)
+	{
+		iman.addRelationship(RelationType::Child, jenn.getPerson());
+	}
 
-	//
+
+	auto& imanChild = iman.getRelationship(RelationType::Child);
+	auto& jennParent = jenn.getRelationship(RelationType::Parent);
+
+	
 
 	//int i{};
 	//auto printRelationships = [&]() {
 	//	for (auto elem : imanChild) {
-	//		elem.m_person2.lock()->m_gender = Person::gender::Female;
-	//		elem.m_person2.lock()->m_birthday = from_string("1994-11-05");
-	//		output(*elem.m_person2.lock());
+	//		elem.m_person2_id.lock()->m_gender = Person::gender::Female;
+	//		elem.m_person2_id.lock()->m_birthday = from_string("1994-11-05");
+	//		output(*elem.m_person2_id.lock());
 	//	}
 	//};
 
@@ -133,11 +133,11 @@ void familyTreeTests() {
 	//printRelationships();
 
 
-	////for (auto elem : jennParent) {
-	////	cout << elem.m_person2.lock()->m_name.fullNameText() << endl;
-	////	cout << elem.m_person2.use_count() << endl;
+	//for (auto elem : jennParent) {
+	//	cout << elem.m_person2_id.lock()->m_name.fullNameText() << endl;
+	//	cout << elem.m_person2_id.use_count() << endl;
 
-	////}
+	//}
 
 
 	//
@@ -230,7 +230,7 @@ void berkleydb_tests()
 	Dbt key(&name, sizeof(name)), data(&birthday, sizeof(birthday));
 	try
 	{
-		FamilyDB testDb{};
+		BerkleyDb testDb{};
 
 		famEnv = testDb.getEnv();
 		famDb = testDb.getDB();

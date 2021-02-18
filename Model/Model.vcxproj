@@ -20,7 +20,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FamilyDB.cpp" />
+    <ClCompile Include="BerkleyDb.cpp" />
     <ClCompile Include="FamilyMember.cpp" />
     <ClCompile Include="FamilyTree.cpp" />
     <ClCompile Include="family_tree_test.cpp" />
@@ -33,7 +33,7 @@
     <ClCompile Include="Relationship.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FamilyDB.h" />
+    <ClInclude Include="BerkleyDb.h" />
     <ClInclude Include="FamilyMember.h" />
     <ClInclude Include="FamilyTree.h" />
     <ClInclude Include="Name.h" />
@@ -41,7 +41,7 @@
     <ClInclude Include="Person.h" />
     <ClInclude Include="IdGenerator.h" />
     <ClInclude Include="Relationship.h" />
-    <ClInclude Include="tree_serializations.h" />
+    <ClInclude Include="Serializations.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -49,10 +49,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{39dd5ce4-d6bd-4bbd-9072-d2f1c77de7bc}</ProjectGuid>
+    <ProjectGuid>{42D15EE7-6CF8-4528-B3A8-AE3D0ED0CA88}</ProjectGuid>
     <RootNamespace>FamilyTreeDataStructure</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Data Structure</ProjectName>
+    <ProjectName>Model</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

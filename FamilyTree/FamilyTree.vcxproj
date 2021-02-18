@@ -7,7 +7,7 @@
     <CppWinRTGenerateWindowsMetadata>true</CppWinRTGenerateWindowsMetadata>
     <MinimalCoreWin>true</MinimalCoreWin>
     <ProjectGuid>{9c509566-4bdd-484e-9840-cc5e15ab4020}</ProjectGuid>
-    <ProjectName>FamilyTree</ProjectName>
+    <ProjectName>View</ProjectName>
     <RootNamespace>FamilyTree</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>

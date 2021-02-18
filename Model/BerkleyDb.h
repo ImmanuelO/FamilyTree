@@ -6,23 +6,20 @@
 namespace Iman_familytree {
 	class FamilyTree; //fwd decl
 
-	class FamilyDB
+	class BerkleyDb
 	{
 	public:
-		friend class FamilyTree;
-
-		FamilyDB();
+		BerkleyDb();
 
 		inline DbEnv* getEnv() { return &m_famEnv; }
 		inline Db* getDB(){ return &m_famDb; }
 	
-		virtual ~FamilyDB();
+		virtual ~BerkleyDb();
 	
-	private:
+	public:
 		char* FAM_ENV_DIR{ nullptr };
 		char* FAM_DB_DIR{ nullptr };
 		DbEnv m_famEnv;
 		Db m_famDb;
-		
 	};
 }

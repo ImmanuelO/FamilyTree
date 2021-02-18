@@ -3,7 +3,7 @@
 #include <db_cxx.h>
 #include <list>
 #include<string>
-#include "FamilyDB.h"
+#include "BerkleyDb.h"
 #include "FamilyMember.h"
 
 
@@ -17,7 +17,7 @@ namespace Iman_familytree {
 		~FamilyTree() {};
 
 	private:
-		FamilyDB m_db_handler;
+		BerkleyDb m_db_handler;
 
 		
 

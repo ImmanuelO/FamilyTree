@@ -1,6 +1,5 @@
 #pragma once
 
-#include <string>
 #include "Person.h"
 
 
@@ -8,16 +7,16 @@ namespace Iman_familytree {
 	
 	struct Relationship
 	{
-		enum class RelationshipType
+		enum class Type
 		{
 			Child,
 			Parent,
 			Spouse
 		};
 
-		RelationshipType m_type{};
-		std::string m_person1_uuid{};
-		std::string m_person2_uuid{};
+		Type m_type{};
+		uint32_t m_person1_id{0};
+		uint32_t m_person2_id{0};
 
 		bool operator==(const Relationship& b) const;
 	};

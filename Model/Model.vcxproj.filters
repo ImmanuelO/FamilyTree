@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Core Tree Classes">
+      <UniqueIdentifier>{c3c941c2-6fd9-4259-b80f-354a616461f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Name.cpp">
@@ -27,9 +30,6 @@
     <ClCompile Include="family_tree_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FamilyDB.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FamilyMember.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -40,6 +40,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IdGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BerkleyDb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,19 +59,19 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FamilyDB.h">
+    <ClInclude Include="IdGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tree_serializations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FamilyTree.h">
+    <ClInclude Include="Serializations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FamilyMember.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Core Tree Classes</Filter>
     </ClInclude>
-    <ClInclude Include="IdGenerator.h">
+    <ClInclude Include="FamilyTree.h">
+      <Filter>Header Files\Core Tree Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="BerkleyDb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
